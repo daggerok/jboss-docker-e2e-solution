@@ -4,6 +4,7 @@ notifications:
 env:
   global:
   - TERM=dumb
+  - secure: XTLnbmciC6vrmK8vgN3xqIrQnHSrKNpsExNg7m2vs899ftLshJFAA20lEdw8LCU2CKhe2xlG5cPGxOkyeUEYtZm9YAUyqO7khqPFolgw0u2/J7e0YIU66nHj5H7rqdiRTOEDO37018SuqNULptMRPCpOMvyUUtW1u+r6f1e+wfh8Md1dP17n5TvozkoMdbuMtoUHcYtAPtGOUP5THDlgzYJakdYllwSNKhUwwoMS5FWAAO/12Cb5hcFVt/EAQQPhWL8TZhMF9HlFdyXMtQ3ymOY6e8ZqLooILYgBkgDVnOwDN3ZIUyj1tw2HRvV3uCx3Hkd+Aj7IsbxfslWL1qJlyoyDOCUGMo4yBH+Fq0mYusFS7gHNjbF8UXeDEFDoHtnimRUXyeSNVOGtk+I/wXTCWgy3bL3iVFwneLw6DzOiVQA3lhBxasps7swgNFGJSs49AB51clTbzW7JbCHjPBip9gX57Rc2rmnWS7uDmVzQStHf5LDWUq4V20Ne/lv7bJpj2iOkVCcwHKHFzF7WMJGaspflSqyy5TxST4e/4YsjjeJ5tuxK/Znz5dMHkv4qGY/NJEVCdKU7LTSNfpcK0Qkh1zbjjD4JbmnzvZdepBBiBy3sQ2E90QjnoJWyn5zS44azGVo4KOcXGp1d73yE/10FPsIZI0WpiHVbMLrRu3MaTio=
 
 language: java
 jdk:
@@ -19,14 +20,13 @@ addons:
     sources:
     - google-chrome
     packages:
-    - google-chrome-stable
+    - docker-ce
     - google-chrome-stable
     - libappindicator1
     - fonts-liberation
     - bash
     - curl
     - libxml2-utils
-    - docker-ce
 
 install: true
 before_install:
@@ -52,15 +52,19 @@ before_install:
 
 script:
 - export root=$(pwd)
-- bash mvnw >/dev/null
-- bash gradlew >/dev/null
+- ./mvnw >/dev/null
+- ./mvnw -pl docker >/dev/null
+- ./mvnw -pl docker -P down
+- ./mvnw -pl docker -P up
+- ./mvnw -pl docker -P up-tail &
+- sleep 100
+- ./mvnw -pl docker -P down
 
 before_deploy:
 - cd ${root}
-#- ./gradlew documentation
-- ./mvnw -Pdocs
-- mkdir -p ./target/generated-docs
-- cp -Rf ./target/generated-docs/index.html ./target/generated-docs/404.html
+- ./mvnw -pl docs
+- mkdir -p ./docs/target/generated-docs
+- cp -Rf ./docs/target/generated-docs/index.html ./docs/target/generated-docs/404.html
 
 deploy:
   provider: pages
@@ -70,16 +74,19 @@ deploy:
   keep-history: true
   on:
     branch: master
-  local-dir: target/generated-docs
+  local-dir: docs/target/generated-docs
   target_branch: gh-pages
 
 before_cache:
-- for item in $(find ~/.gradle -name "*.lock");
+- for item in $(find ~/.gradle -name "*.lock") ;
+    do sudo rm -rf $item ;
+  done
+- for item in $(find ./ -name "*.lock") ;
     do sudo rm -rf $item ;
   done
 
 cache:
   directories:
-  - $HOME/.m2
-  - $HOME/.gradle
   - $HOME/.docker
+  - $HOME/.gradle
+  - $HOME/.m2

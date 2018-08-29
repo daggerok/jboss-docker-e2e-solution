@@ -1,0 +1,17 @@
+= JBOSS docker end-2-end testing solution image:https://travis-ci.org/daggerok/jboss-docker-e2e-solution.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/jboss-docker-e2e-solution"] image:https://gitlab.com/daggerok/jboss-docker-e2e-solution/badges/master/build.svg["Build Status", link="https://gitlab.com/daggerok/jboss-docker-e2e-solution/-/jobs"]
+
+//tag::content[]
+
+.docker-compose up
+[source,bash]
+----
+./mvnw clean package com.dkanejs.maven.plugins:docker-compose-maven-plugin:1.0.1:up -P docker
+----
+
+.docker-compose down
+[source,bash]
+----
+./mvnw com.dkanejs.maven.plugins:docker-compose-maven-plugin:1.0.1:down -P docker
+----
+
+//end::content[]
