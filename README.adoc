@@ -1,4 +1,4 @@
-= jboss-docker-e2e-solution image:https://travis-ci.org/daggerok/jboss-docker-e2e-solution.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/jboss-docker-e2e-solution"] image:https://gitlab.com/daggerok/jboss-docker-e2e-solution/badges/master/build.svg["Build Status", link="https://gitlab.com/daggerok/jboss-docker-e2e-solution/-/jobs"]
+= JBOSS docker end-2-end testing image:https://travis-ci.org/daggerok/jboss-docker-e2e-solution.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/jboss-docker-e2e-solution"] image:https://gitlab.com/daggerok/jboss-docker-e2e-solution/badges/master/build.svg["Build Status", link="https://gitlab.com/daggerok/jboss-docker-e2e-solution/-/jobs"]
 
 //tag::content[]
 

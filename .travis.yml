@@ -59,6 +59,7 @@ script:
 - ./mvnw -pl docker -P up-tail &
 - sleep 100
 - ./mvnw -pl docker -P down
+- ./mvnw -pl legacy-java-ee-app
 
 before_deploy:
 - cd ${root}
