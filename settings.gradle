@@ -1,0 +1,3 @@
+rootProject.name = 'jboss-docker-e2e-solution'
+enableFeaturePreview 'STABLE_PUBLISHING'
+include 'docs'
