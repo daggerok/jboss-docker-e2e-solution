@@ -1,0 +1,28 @@
+version: '2.1'
+services:
+  oracle:
+    image: daggerok/oracle:xe
+    shm_size: 1g
+    environment:
+      ORACLE_PWD: password
+      APEX_PORT: 8080
+    ports: ['1521:1521']
+    volumes: ['jboss-data:/home/appuser']
+    healthcheck:
+      test: curl -uSYSTEM:$$ORACLE_PWD -v http://127.0.0.1:$$APEX_PORT//apex/
+      timeout: 2s
+      retries: 100
+    networks:
+      backing-services:
+        aliases:
+        - o
+        - db
+        - oracle
+        - o.daggerok.github.com
+        - db.daggerok.github.com
+        - oracle.daggerok.github.com
+volumes:
+  oracle-data: {}
+networks:
+  backing-services:
+    driver: bridge

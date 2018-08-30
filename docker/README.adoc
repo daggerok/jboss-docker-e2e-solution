@@ -1,17 +1,22 @@
-= docker
+= docker (Oracle, JBoss)
 
 //tag::content[]
 
 .docker-compose up
 [source,bash]
 ----
-./mvnw clean package com.dkanejs.maven.plugins:docker-compose-maven-plugin:1.0.1:up -P docker
+./mvnw -pl legacy-java-ee-app
+./mvnw docker-compose:up
+./mvnw -pl docker clean package docker-compose:up
+./mvnw -pl docker clean package -P up
+./mvnw -pl docker clean package -P tail
 ----
 
 .docker-compose down
 [source,bash]
 ----
-./mvnw com.dkanejs.maven.plugins:docker-compose-maven-plugin:1.0.1:down -P docker
+./mvnw -pl docker docker-compose:down
+./mvnw -pl docker -P down
 ----
 
 //end::content[]

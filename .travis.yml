@@ -53,13 +53,19 @@ before_install:
 script:
 - export root=$(pwd)
 - ./mvnw >/dev/null
+#
+- ./mvnw -pl legacy-java-ee-app
+#
 - ./mvnw -pl docker >/dev/null
-- ./mvnw -pl docker -P down
-- ./mvnw -pl docker -P up
-- ./mvnw -pl docker -P up-tail &
+- ./mvnw -pl docker -P down >/dev/null
+#
+- ./mvnw -pl docker -P tail &
 - sleep 100
 - ./mvnw -pl docker -P down
-- ./mvnw -pl legacy-java-ee-app
+- ./mvnw -pl docker -P tail &
+- sleep 150
+- http :8080/app/
+- ./mvnw -pl docker -P down
 
 before_deploy:
 - cd ${root}

@@ -5,6 +5,20 @@
          http://maven.apache.org/POM/4.0.0
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+  <!--
+
+    clean run:
+
+      docker rm -f -v docker_oracle_1 docker_jboss_1
+      docker rmi -f 127.0.0.1:5000/jboss-docker-e2e-solution/jboss:latest
+
+    or:
+
+      docker rm -f -v $(docker ps -a|awk '{print $1}')
+      docker rmi -f $(docker images|grep daggerok|grep jboss|awk '{print $3}')
+
+  -->
+
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -17,6 +31,119 @@
   <packaging>pom</packaging>
 
   <profiles>
+
+    <!-- oracle -->
+
+    <profile>
+      <id>oracle-up</id>
+      <build>
+        <defaultGoal>docker-compose:up</defaultGoal>
+
+        <plugins>
+          <plugin>
+            <groupId>com.dkanejs.maven.plugins</groupId>
+            <artifactId>docker-compose-maven-plugin</artifactId>
+            <configuration>
+              <composeFile>${project.basedir}/docker-compose-oracle.yaml</composeFile>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>oracle-tail</id>
+      <build>
+        <defaultGoal>docker-compose:up</defaultGoal>
+
+        <plugins>
+          <plugin>
+            <groupId>com.dkanejs.maven.plugins</groupId>
+            <artifactId>docker-compose-maven-plugin</artifactId>
+            <configuration>
+              <composeFile>${project.basedir}/docker-compose-oracle.yaml</composeFile>
+              <detachedMode>false</detachedMode>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>oracle-down</id>
+      <build>
+        <defaultGoal>docker-compose:down</defaultGoal>
+
+        <plugins>
+          <plugin>
+            <groupId>com.dkanejs.maven.plugins</groupId>
+            <artifactId>docker-compose-maven-plugin</artifactId>
+            <configuration>
+              <composeFile>${project.basedir}/docker-compose-oracle.yaml</composeFile>
+              <detachedMode>false</detachedMode>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- jboss -->
+
+    <profile>
+      <id>jboss-up</id>
+      <build>
+        <defaultGoal>docker-compose:up</defaultGoal>
+
+        <plugins>
+          <plugin>
+            <groupId>com.dkanejs.maven.plugins</groupId>
+            <artifactId>docker-compose-maven-plugin</artifactId>
+            <configuration>
+              <composeFile>${project.basedir}/docker-compose-jboss.yaml</composeFile>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>jboss-tail</id>
+      <build>
+        <defaultGoal>docker-compose:up</defaultGoal>
+
+        <plugins>
+          <plugin>
+            <groupId>com.dkanejs.maven.plugins</groupId>
+            <artifactId>docker-compose-maven-plugin</artifactId>
+            <configuration>
+              <composeFile>${project.basedir}/docker-compose-jboss.yaml</composeFile>
+              <detachedMode>false</detachedMode>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>jboss-down</id>
+      <build>
+        <defaultGoal>docker-compose:down</defaultGoal>
+
+        <plugins>
+          <plugin>
+            <groupId>com.dkanejs.maven.plugins</groupId>
+            <artifactId>docker-compose-maven-plugin</artifactId>
+            <configuration>
+              <composeFile>${project.basedir}/docker-compose-jboss.yaml</composeFile>
+              <detachedMode>false</detachedMode>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- all -->
+
     <profile>
       <id>up</id>
       <build>
@@ -25,7 +152,7 @@
     </profile>
 
     <profile>
-      <id>up-tail</id>
+      <id>tail</id>
       <build>
         <defaultGoal>docker-compose:up</defaultGoal>
 

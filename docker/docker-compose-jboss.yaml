@@ -1,0 +1,28 @@
+version: '2.1'
+services:
+  jboss:
+    image: 127.0.0.1:5000/jboss-docker-e2e-solution/jboss
+    environment:
+      ORACLE_HOST: oracle
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile-legacy-java-ee-app
+    volumes: ['jboss-data:/home/appuser']
+    ports: ['8080:8080']
+    restart: unless-stopped
+    networks:
+      backing-services:
+        aliases:
+        - j
+        - jb
+        - app
+        - jboss
+        - j.daggerok.github.com
+        - jb.daggerok.github.com
+        - app.daggerok.github.com
+        - jboss.daggerok.github.com
+volumes:
+  jboss-data: {}
+networks:
+  backing-services:
+    driver: bridge

@@ -1,4 +1,4 @@
-= roject under test
+= project under test (legacy JavaEE app running in JBoss)
 
 //tag::content[]
 
