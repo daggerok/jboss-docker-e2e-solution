@@ -2,7 +2,18 @@
 
 //tag::content[]
 
-Status: in development...
+This repository contains end-to-end testing of
+legacy system which is basically absolutely doesn't
+has any tests at all.
+
+Testing is going base on selenium-hub with chrome node
+
+Test could be implemented with JUnit 5 and written
+using modern languages, like latest fancy java 8/10/11
+or Kotlin
+
+Also we going to bootstrap fresh new oracle
+instance before tests
 
 Read link:https://daggerok.github.io/jboss-docker-e2e-solution[project reference documentation]
 

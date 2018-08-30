@@ -35,11 +35,14 @@ image:https://img.shields.io/bitbucket/pipelines/daggerok/{root-project-name}.sv
 
 == Introduction
 
-include::../README.adoc[tags=content]
+include::../../../../README.adoc[tags=content]
 
 == Implementation
 
-TODO: implement documentation...
+include::../../../../docker/README.adoc[tags=content]
+include::../../../../legacy-java-ee-app/README.adoc[tags=content]
+include::../../../../e2e-tests/README.adoc[tags=content]
+include::../../../../docs/README.adoc[tags=content]
 
 == Links
 

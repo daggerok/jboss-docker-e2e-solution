@@ -1,0 +1,51 @@
+version: '2.1'
+
+services:
+
+  selenium-hub:
+    image: selenium/hub:3.14.0-beryllium
+    ports: ['4444:4444']
+    restart: unless-stopped
+    networks:
+      backing-services:
+        aliases:
+        - hub
+        - selenium-hub
+        - hub.daggerok.github.com
+        - selenium-hub.daggerok.github.com
+
+  node-chrome-debug:
+    image: selenium/node-chrome-debug:3.14.0-beryllium
+    depends_on: [selenium-hub]
+    environment:
+      HUB_HOST: selenium-hub
+    ports: ['5900']
+    restart: unless-stopped
+    networks:
+      backing-services:
+        aliases:
+        - chrome
+        - node-chrome-debug
+        - chrome.daggerok.github.com
+        - node-chrome-debug.daggerok.github.com
+    #shm_size: 2g
+
+  node-firefox-debug:
+    image: selenium/node-firefox-debug:3.14.0-beryllium
+    depends_on: [selenium-hub]
+    environment:
+      HUB_HOST: selenium-hub
+    ports: ['5900']
+    restart: unless-stopped
+    networks:
+      backing-services:
+        aliases:
+        - firefox
+        - node-firefox-debug
+        - firefox.daggerok.github.com
+        - node-firefox-debug.daggerok.github.com
+    #shm_size: 2g
+
+networks:
+  backing-services:
+    driver: bridge

@@ -1,17 +1,14 @@
-= project under test (legacy JavaEE app running in JBoss)
 
 //tag::content[]
 
-.docker-compose up
-[source,bash]
-----
-./mvnw clean package com.dkanejs.maven.plugins:docker-compose-maven-plugin:1.0.1:up -P docker
-----
+=== project under test (legacy JavaEE app running in JBoss)
 
-.docker-compose down
+.docker-compose
 [source,bash]
 ----
-./mvnw com.dkanejs.maven.plugins:docker-compose-maven-plugin:1.0.1:down -P docker
+./mvnw -pl legacy-java-ee-app clean package docker-compose:up
+
+./mvnw -pl legacy-java-ee-app docker-compose:down
 ----
 
 //end::content[]

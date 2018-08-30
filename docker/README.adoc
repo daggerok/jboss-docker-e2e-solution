@@ -1,20 +1,17 @@
-= docker (Oracle, JBoss)
 
 //tag::content[]
 
-.docker-compose up
+=== docker (Oracle, JBoss, Selenium Hub + Chrome)
+
+.docker-compose
 [source,bash]
 ----
 ./mvnw -pl legacy-java-ee-app
-./mvnw docker-compose:up
-./mvnw -pl docker clean package docker-compose:up
-./mvnw -pl docker clean package -P up
-./mvnw -pl docker clean package -P tail
-----
 
-.docker-compose down
-[source,bash]
-----
+./mvnw -pl docker docker-compose:up
+./mvnw -pl docker -P up
+./mvnw -pl docker -P tail
+
 ./mvnw -pl docker docker-compose:down
 ./mvnw -pl docker -P down
 ----

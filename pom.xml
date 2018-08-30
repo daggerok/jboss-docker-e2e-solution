@@ -22,6 +22,7 @@
     <module>docker</module>
     <module>docs</module>
     <module>legacy-java-ee-app</module>
+    <module>e2e-tests</module>
   </modules>
 
   <build>
