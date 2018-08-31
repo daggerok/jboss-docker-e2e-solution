@@ -99,4 +99,18 @@ networks:
     driver: bridge
 ----
 
+.selenium
+[source,bash]
+----
+docker ps
+CONTAINER ID        IMAGE                                            COMMAND                  CREATED              STATUS                        PORTS                                                  NAMES
+c702811463c3        selenium/node-chrome-debug:3.14.0-beryllium      "/opt/bin/entry_poin…"   17 seconds ago       Up 16 seconds                 0.0.0.0:32768->5900/tcp
+
+# to connect by using vnc client use:
+# addr:port
+127.0.0.1:32768
+# password:
+secret
+----
+
 //end::content[]
