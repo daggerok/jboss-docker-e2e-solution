@@ -4,7 +4,7 @@
 <book xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
 <info>
 <title>jboss-docker-e2e-solution (0.0.1)</title>
-<date>2018-08-31 01:18:21 UTC</date>
+<date>2018-08-31 10:26:52 UTC</date>
 <author>
 <personname>
 <firstname>Maksim</firstname>
@@ -16,7 +16,7 @@
 <revhistory>
 <revision>
 <revnumber>0.0.1</revnumber>
-<date>2018-08-31 01:18:21 UTC</date>
+<date>2018-08-31 10:26:52 UTC</date>
 <authorinitials>MK</authorinitials>
 </revision>
 </revhistory>
@@ -159,6 +159,20 @@ services:
 networks:
   backing-services:
     driver: bridge</programlisting>
+<formalpara>
+<title>selenium</title>
+<para>
+<programlisting language="bash" linenumbering="unnumbered">docker ps
+CONTAINER ID        IMAGE                                            COMMAND                  CREATED              STATUS                        PORTS                                                  NAMES
+c702811463c3        selenium/node-chrome-debug:3.14.0-beryllium      "/opt/bin/entry_poin…"   17 seconds ago       Up 16 seconds                 0.0.0.0:32768-&gt;5900/tcp
+
+# to connect by using vnc client use:
+# addr:port
+127.0.0.1:32768
+# password:
+secret</programlisting>
+</para>
+</formalpara>
 </section>
 <section xml:id="documentation">
 <title>documentation</title>
