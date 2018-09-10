@@ -4,7 +4,7 @@
 <book xmlns="http://docbook.org/ns/docbook" xmlns:xl="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en">
 <info>
 <title>jboss-docker-e2e-solution (0.0.1)</title>
-<date>2018-08-31 10:26:52 UTC</date>
+<date>2018-09-10 11:52:15 UTC</date>
 <author>
 <personname>
 <firstname>Maksim</firstname>
@@ -16,7 +16,7 @@
 <revhistory>
 <revision>
 <revnumber>0.0.1</revnumber>
-<date>2018-08-31 10:26:52 UTC</date>
+<date>2018-09-10 11:52:15 UTC</date>
 <authorinitials>MK</authorinitials>
 </revision>
 </revhistory>
@@ -101,8 +101,8 @@ docker logs -f node-firefox-debug &amp;</programlisting>
 <formalpara>
 <title>5) finally, run e2e tests</title>
 <para>
-<programlisting language="bash" linenumbering="unnumbered">./mvnw -DargLine="-Dbrowser=firefox -Drmeote=http://127.0.0.1:4444/wd/hub" test
-./mvnw -DargLine="-Dselenide.browser=chrome -Drmeote=http://127.0.0.1:4444/wd/hub" test</programlisting>
+<programlisting language="bash" linenumbering="unnumbered">./mvnw -DargLine="-Dselenide.browser=chrome -Dremote=http://127.0.0.1:4444/wd/hub" test
+./mvnw -DargLine="-Dbrowser=firefox -Dremote=http://127.0.0.1:4444/wd/hub" test</programlisting>
 </para>
 </formalpara>
 <note>
